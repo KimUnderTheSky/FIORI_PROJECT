@@ -1,0 +1,13 @@
+{
+	"selectedKey": "page1",
+	"navigation": [
+		{
+			"title": "자재 별 검수 요약 정보",
+			"key": "page1"
+		},
+		{
+			"title": "거래처 별 검수 요약 정보",
+			"key": "page2"
+		}
+	]
+}

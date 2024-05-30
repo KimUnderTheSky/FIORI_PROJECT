@@ -1,0 +1,13 @@
+{
+	"selectedKey": "page1",
+	"navigation": [
+		{
+			"title": "구매오더 조회",
+			"key": "page1"
+		},
+		{
+			"title": "거래처별 구매오더 총액",
+			"key": "page2"
+		}		
+	]
+}

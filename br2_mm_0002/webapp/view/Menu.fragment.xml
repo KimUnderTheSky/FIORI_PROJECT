@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core">
+	<Menu itemSelected="onMenuAction">
+		<MenuItem text="(W) 미입고"/>
+		<MenuItem text="(C) 검수완료"/>
+		<MenuItem text="(F) 입고완료"/>
+		<MenuItem text="(R) 재주문"/>
+		<MenuItem text="(X) 초기화"/>
+	</Menu>
+</core:FragmentDefinition>

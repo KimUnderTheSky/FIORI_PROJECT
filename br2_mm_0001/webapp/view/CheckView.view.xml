@@ -1,0 +1,445 @@
+<mvc:View
+    height="100%"
+	controllerName="sync4.c1.br2mm0001.controller.CheckView"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:tnt="sap.tnt">
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Image height="1.5rem"
+					   class="sapUiSmallMarginBegin"
+					   src="image/부릉이로고.png" />
+				<Title level="H1" text="BR2 Quality Management" wrapping="false" id="productName">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear"/>
+					</layoutData>
+				</Title>
+				<Text text="" wrapping="false" id="secondTitle">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear"/>
+					</layoutData>
+				</Text>
+				<ToolbarSpacer />
+				<SearchField width="16rem" id="searchField">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low" group="1"/>
+					</layoutData>
+				</SearchField>
+				<ToolbarSpacer id="spacer">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low" group="1"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button visible="false" icon="sap-icon://search" type="Transparent" id="searchButton" tooltip="Search"/>
+				<OverflowToolbarButton icon="sap-icon://source-code" type="Transparent" tooltip="Action 1" text="Action 1">
+					<layoutData>
+						<OverflowToolbarLayoutData group="2"/>
+					</layoutData>
+				</OverflowToolbarButton>
+				<OverflowToolbarButton icon="sap-icon://card" type="Transparent" tooltip="Action 2" text="Action 2">
+					<layoutData>
+						<OverflowToolbarLayoutData group="2"/>
+					</layoutData>
+				</OverflowToolbarButton>
+				<ToolbarSeparator>
+					<layoutData>
+						<OverflowToolbarLayoutData group="2"/>
+					</layoutData>
+				</ToolbarSeparator>
+				<OverflowToolbarButton icon="sap-icon://action-settings" type="Transparent" text="Settings"/>
+				<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer width="1.125rem"/>
+				<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Avatar>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:subHeader>
+			<tnt:ToolHeader>
+				<IconTabHeader
+						selectedKey="{toolBar>/selectedKey}"
+						items="{path: 'toolBar>/navigation'}"
+						select=".onItemSelect"
+						mode="Inline">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" shrinkable="true" />
+					</layoutData>
+					<items>
+						<IconTabFilter
+								items="{toolBar>items}"
+								text="{toolBar>title}"
+								key="{toolBar>key}"
+								interactionMode="SelectLeavesOnly">
+							<items>
+								<IconTabFilter
+										text="{toolBar>title}"
+										key="{toolBar>key}">
+								</IconTabFilter>
+							</items>
+						</IconTabFilter>
+					</items>
+				</IconTabHeader>
+			</tnt:ToolHeader>
+		</tnt:subHeader>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="page1">
+				<pages>
+					<ScrollContainer
+						id="page1"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding">
+						<SplitApp
+							id="SplitAppDemo"
+							initialDetail="detail"
+							initialMaster="master">
+							<masterPages>
+								<Page
+									id="master"
+									title="거래처 별 자재 목록"
+									backgroundDesign= "List">
+									<List>
+										<StandardListItem title="VEN001" type="Navigation" press=".onPressGoToMaster" />
+										<StandardListItem title="VEN002" type="Navigation" press=".onPressGoToMaster" />
+										<StandardListItem title="VEN003" type="Navigation" press=".onPressGoToMaster" />
+										<StandardListItem title="VEN004" type="Navigation" press=".onPressGoToMaster" />
+										<StandardListItem title="VEN005" type="Navigation" press=".onPressGoToMaster" />
+									</List>
+								</Page>
+								<Page
+									id="VEN001"
+									title="삼성SDI"
+									backgroundDesign="List"
+									showNavButton="true"
+									navButtonPress=".onPressMasterBack">
+									<List itemPress=".onListItemPress">
+										<items>
+											<StandardListItem title="HBATBG" type="Active"  custom:to="dynamicDetail" />
+											<StandardListItem title="HBATSM" type="Active"  custom:to="dynamicDetail" />
+										</items>
+									</List>
+								</Page>
+								<Page
+									id="VEN002"
+									title="삼천리자전거"
+									backgroundDesign="List"
+									showNavButton="true"
+									navButtonPress=".onPressMasterBack">
+									<List itemPress=".onListItemPress">
+										<items>
+											<StandardListItem title="HCABOX" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="HHBMOT" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="HLEDLT" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="HLOKEM" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="HPHRAC" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="HPLARM" type="Active" custom:to="dynamicDetail" />
+										</items>
+									</List>
+								</Page>
+								<Page
+									id="VEN003"
+									title="LG디스플레이"
+									backgroundDesign="List"
+									showNavButton="true"
+									navButtonPress=".onPressMasterBack">
+									<List itemPress=".onListItemPress">
+										<items>
+											<StandardListItem title="HDISPL" type="Active" custom:to="dynamicDetail" />
+										</items>
+									</List>
+								</Page>
+								<Page
+									id="VEN004"
+									title="알리익스프레스"
+									backgroundDesign="List"
+									showNavButton="true"
+									navButtonPress=".onPressMasterBack">
+									<List itemPress=".onListItemPress">
+										<items>
+											<StandardListItem title="RBTNT" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RFFOAM" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RLETDD" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RPAINT" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RPLATC" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RRUBBB" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RWIRER" type="Active" custom:to="dynamicDetail" />
+										</items>
+									</List>
+								</Page>
+								<Page
+									id="VEN005"
+									title="포스코"
+									backgroundDesign="List"
+									showNavButton="true"
+									navButtonPress=".onPressMasterBack">
+									<List itemPress=".onListItemPress">
+										<items>
+											<StandardListItem title="RALUMN" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RSTTEL" type="Active" custom:to="dynamicDetail" />
+											<StandardListItem title="RTITAM" type="Active" custom:to="dynamicDetail" />
+										</items>
+									</List>
+								</Page>
+							</masterPages>
+							<detailPages>
+								<Page
+									id="detail"
+									title="자재별 검수 요약 정보"
+									backgroundDesign= "Solid">
+									<t:Table
+									id="CheckList"
+									rows="{/CheckSet}"
+									selectionMode="Single"
+									selectionBehavior="Row"
+									paste="onPaste"
+									ariaLabelledBy="title"
+									visibleRowCount="{lt_rows}"
+									>
+									<t:columns>
+										<t:Column width="7rem">
+											<Label text="거래처코드" />
+											<t:template>
+												<Text text="{Vencode}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="자재코드" />
+											<t:template>
+												<Text text="{Matcode}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="11rem">
+											<Label text="자재명" />
+											<t:template>
+												<Text text="{Mattxt}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="자재 유형 코드" />
+											<t:template>
+												<Text text="{Mattype}" wrapping="false" class="mtypeColor"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="자재 유형" />
+											<t:template>
+												<Text text="{Mtyptxt}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="총 검수량" />
+											<t:template>
+												<Text text="{TotalInquan}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="총 불합격량" />
+											<t:template>
+												<Text text="{TotalFinquan}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="총 합격량" />
+											<t:template>
+												<Text text="{
+														parts:[{path:'TotalPinquan'},{path:'unit'}],
+														type: 'sap.ui.model.type.Unit', 
+														formatOptions: {showMeasure: false }
+														}" wrapping="false" />
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="단위" />
+											<t:template>
+												<Text text="{unit}" wrapping="false" class="unitColor" />
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+									
+								</Page>
+								<Page
+									id="dynamicDetail"
+									title="거래처별 자재 상세 정보"
+									backgroundDesign= "Transparent"
+									class="whiteBackground"
+									showNavButton="true"
+									navButtonPress=".onPressDetailBack"
+									>
+									<HBox width="100%">
+										<!-- 왼쪽 절반: SimpleForm -->
+										<VBox width="50%" height="600px">
+											<f:SimpleForm id="memberDisplay"
+												editable="false"
+												layout="GridLayout"
+												title="거래처 정보"
+												labelSpanXL="3"
+												labelSpanL="3"
+												labelSpanM="3"
+												labelSpanS="12"
+												adjustLabelSpan="false"
+												emptySpanXL="4"
+												emptySpanL="4"
+												emptySpanM="4"
+												emptySpanS="0"
+												columnsXL="1"
+												columnsL="1"
+												columnsM="1"
+												singleContainerFullSize="false">
+												<f:content >
+													<Text text="" />
+													<Label text="거래처명" />
+													<Text text="{CheckRecord>/Vencname}" />
+													<Label text="거래처종류" />
+													<Text text="{CheckRecord>/Venname}" />
+													<Label text="주소" />
+													<Text text="{CheckRecord>/Venaddr}" />
+													<Label text="연락처" />
+													<Text text="{CheckRecord>/Venphone}" />
+													<Label text="대표" />
+													<Text text="{CheckRecord>/Venceo}" />
+													<Label text="담당자" />
+													<Text text="{CheckRecord>/Vencp}" />
+													<Label text="품목" />
+													<Text text="{CheckRecord>/Mattxt}" />
+													<Label text="품목 타입" />
+													<Text text="{CheckRecord>/Mtyptxt}" />
+													<Label text="거래은행" />
+													<Text text="{CheckRecord>/Bankcod}" />
+													<Label text="계좌번호" />
+													<Text text="{CheckRecord>/Accno}" />
+													<Label text="예금주" />
+													<Text text="{CheckRecord>/Accname}" />
+												</f:content>
+											</f:SimpleForm>
+										</VBox>
+
+										<!-- 오른쪽 절반: 파이 차트 -->
+										<VBox width="50%" height="100%">
+											<viz:VizFrame
+												id="pieChart"
+												uiConfig="{applicationSet:'fiori'}"
+												height="500px"
+												width="100%"
+												vizType="pie"
+												vizProperties="{
+													title: { text: '불량률 확인', visible: true },
+													plotArea: { dataLabel: { visible: true }, colorPalette:['blue', 'red'] }
+												}">
+												<viz:dataset>
+													<viz.data:FlattenedDataset data="{PieModel>/}">
+														<viz.data:dimensions>
+															<viz.data:DimensionDefinition name="Status" value="{Status}" />
+														</viz.data:dimensions>
+														<viz.data:measures>
+															<viz.data:MeasureDefinition name="Quantity" value="{Quantity}" />
+														</viz.data:measures>
+													</viz.data:FlattenedDataset>
+												</viz:dataset>
+												<viz:feeds>
+													<viz.feeds:FeedItem uid="size" type="Measure" values="Quantity" />
+													<viz.feeds:FeedItem uid="color" type="Dimension" values="Status" />
+												</viz:feeds>
+											</viz:VizFrame>
+										</VBox>
+									</HBox>
+								</Page>
+							</detailPages>
+							
+						</SplitApp>
+					</ScrollContainer>
+					<ScrollContainer
+						id="page2"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding">
+						<FlexBox
+							width="100%"
+							height="50%"
+							alignItems="Start"
+							justifyContent="Start">
+							<viz:VizFrame id="VizFrame1" uiConfig="{applicationSet:'fiori'}"
+							height='500px' width="700px" vizType='bar' vizProperties="{ title: {text:'거래처별 합격 정보', visible: true}, dataLabel: { visible: true } }">
+								<viz:dataset> <!-- Chart에 나타날 DataSet을 정의-->
+									<viz.data:FlattenedDataset data="{/CheckSet}"> <!-- OData의 EntitySet -->
+										<viz.data:dimensions> <!-- Chart를 그릴 기준 필드 -->
+											<viz.data:DimensionDefinition name="Vencode"
+												value="{Vencode}" /> <!-- name은 Dimension을 지칭하는 진짜 이름(Feed에서 이 이름으로 찾음)-->
+										</viz.data:dimensions>
+										<viz.data:measures><!-- Chart를 그릴 값, 데이터, 수치 -->
+											<viz.data:MeasureDefinition name="TotalPinquan"
+												value="{TotalPinquan}" /> <!-- name은 Feed를 지칭하는 진짜 이름(Feed에서 이 이름으로 찾음)-->
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+
+								<viz:feeds> <!-- Chart를 그릴 재료 정의-->
+									<viz.feeds:FeedItem id='valueAxisFeed1' uid="valueAxis" type="Measure"
+										values="TotalPinquan" /> 
+									<viz.feeds:FeedItem id='categoryAxisFeed1' uid="categoryAxis" type="Dimension"
+										values="Vencode" /> <!-- Definition Name을 적어둬야함 -->
+								</viz:feeds>
+								<viz:dependents>
+									<viz:Popover id="idPopOver1"></viz:Popover>
+								</viz:dependents>
+						</viz:VizFrame>
+						<viz:VizFrame id="VizFrame2" uiConfig="{applicationSet:'fiori'}"
+							height='500px' width="700px" vizType='bar' 
+							vizProperties="{ title: {text:'거래처별 불합격 정보', visible: true}, plotArea: { colorPalette:['#dc0d0e'] }, dataLabel: { visible: true }}" >
+								<viz:dataset> <!-- Chart에 나타날 DataSet을 정의-->
+									<viz.data:FlattenedDataset data="{/CheckSet}"> <!-- OData의 EntitySet -->
+										<viz.data:dimensions> <!-- Chart를 그릴 기준 필드 -->
+											<viz.data:DimensionDefinition name="Vencode"
+												value="{Vencode}" /> <!-- name은 Dimension을 지칭하는 진짜 이름(Feed에서 이 이름으로 찾음)-->
+										</viz.data:dimensions>
+										<viz.data:measures><!-- Chart를 그릴 값, 데이터, 수치 -->
+											<viz.data:MeasureDefinition name="TotalFinquan"
+												value="{TotalFinquan}" /> 
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+
+								<viz:feeds> <!-- Chart를 그릴 재료 정의-->
+									<viz.feeds:FeedItem id='valueAxisFeed2' uid="valueAxis" type="Measure"
+										values="TotalFinquan" /> 
+									<viz.feeds:FeedItem id='categoryAxisFeed2' uid="categoryAxis" type="Dimension"
+										values="Vencode" /> <!-- Definition Name을 적어둬야함 -->
+								</viz:feeds>
+								<viz:dependents>
+									<viz:Popover id="idPopOver2"></viz:Popover>
+								</viz:dependents>
+						</viz:VizFrame>
+					</FlexBox>
+					</ScrollContainer>
+					<ScrollContainer
+						id="page3"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding">
+						<Text text="Users and Groups" />
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+    
+</mvc:View>

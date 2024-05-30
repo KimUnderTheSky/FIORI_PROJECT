@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC102GWMM001_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Purorder" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pono"/>
+                    <PropertyRef Name="Matcode"/>
+                </Key>
+                <Property Name="Pono" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="구매오더 번호" sap:updatable="false"/>
+                <Property Name="Matcode" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="자재코드" sap:updatable="false"/>
+                <Property Name="Prno" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="구매요청 번호"/>
+                <Property Name="Postatus" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="구매오더 진행상태"/>
+                <Property Name="Podate" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="구매오더생성날짜"/>
+                <Property Name="Insnum" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="검수번호"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="공장코드"/>
+                <Property Name="Whcode" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="창고코드"/>
+                <Property Name="Vencode" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="거래처코드"/>
+                <Property Name="Estdate" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="입출고날짜"/>
+                <Property Name="Quant" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="Unit" sap:label="Volume"/>
+                <Property Name="Unit" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Price_Mat" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currkey" sap:label="자재단가"/>
+                <Property Name="Toprice" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currkey" sap:label="총액"/>
+                <Property Name="Currkey" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityContainer Name="ZC102GWMM001_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PurorderSet" EntityType="ZC102GWMM001_SRV.Purorder" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZC102GWMM001_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZC102GWMM001_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

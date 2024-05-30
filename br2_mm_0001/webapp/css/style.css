@@ -1,0 +1,12 @@
+/* Enter your custom styles here */
+.whiteBackground .sapMPageBackground {
+    background-color: white; /* 배경색을 흰색으로 설정 */
+}
+
+.unitColor {
+    color: green;
+}
+
+.mtypeColor {
+    color: #FF4646;
+}

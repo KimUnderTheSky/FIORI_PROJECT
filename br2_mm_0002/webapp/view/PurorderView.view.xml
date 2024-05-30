@@ -1,0 +1,277 @@
+<mvc:View 
+    controllerName="sync4.c1.br2mm0002.controller.PurorderView"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:tnt="sap.tnt">
+    <tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Image height="1.5rem"
+					   class="sapUiSmallMarginBegin"
+					   src="image/부릉이로고.png" />
+				<Title level="H1" text="BR2 Purchase Order Management" wrapping="false" id="productName">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear"/>
+					</layoutData>
+				</Title>
+				<Text text="" wrapping="false" id="secondTitle">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear"/>
+					</layoutData>
+				</Text>
+				<ToolbarSpacer />
+				<SearchField width="16rem" id="searchField">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low" group="1"/>
+					</layoutData>
+				</SearchField>
+				<ToolbarSpacer id="spacer">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low" group="1"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button visible="false" icon="sap-icon://search" type="Transparent" id="searchButton" tooltip="Search"/>
+				<OverflowToolbarButton icon="sap-icon://source-code" type="Transparent" tooltip="Action 1" text="Action 1">
+					<layoutData>
+						<OverflowToolbarLayoutData group="2"/>
+					</layoutData>
+				</OverflowToolbarButton>
+				<OverflowToolbarButton icon="sap-icon://card" type="Transparent" tooltip="Action 2" text="Action 2">
+					<layoutData>
+						<OverflowToolbarLayoutData group="2"/>
+					</layoutData>
+				</OverflowToolbarButton>
+				<ToolbarSeparator>
+					<layoutData>
+						<OverflowToolbarLayoutData group="2"/>
+					</layoutData>
+				</ToolbarSeparator>
+				<OverflowToolbarButton icon="sap-icon://action-settings" type="Transparent" text="Settings"/>
+				<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer width="1.125rem"/>
+				<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Avatar>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:subHeader>
+			<tnt:ToolHeader>
+				<IconTabHeader
+						selectedKey="{toolBar>/selectedKey}"
+						items="{path: 'toolBar>/navigation'}"
+						select=".onItemSelect"
+						mode="Inline">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" shrinkable="true" />
+					</layoutData>
+					<items>
+						<IconTabFilter
+								items="{toolBar>items}"
+								text="{toolBar>title}"
+								key="{toolBar>key}"
+								interactionMode="SelectLeavesOnly">
+							<items>
+								<IconTabFilter
+										text="{toolBar>title}"
+										key="{toolBar>key}">
+								</IconTabFilter>
+							</items>
+						</IconTabFilter>
+					</items>
+				</IconTabHeader>
+			</tnt:ToolHeader>
+		</tnt:subHeader>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="page1">
+				<pages>
+					<ScrollContainer
+						id="page1"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding">
+						<OverflowToolbar id="otb1">
+							<Label text="구매오더 번호 검색 :"/>
+							<!-- <m:ToolbarSpacer/> -->
+							<Input id="Pono" width="100px" showClearIcon="true" maxLength="15"/>
+							<Button text="검색" type="Transparent" icon="sap-icon://search" press="onSearch" class="icon-search"/>
+							<Label text="오더 상태 선택:"/>
+							<Button id="button" text="Status" press="onPress" ariaHasPopup="Menu"/>
+							<Label text="구매오더 일자 검색:" labelFor="DP2"/>
+							<Text id="textResult" text="" class="sapUiSmallMargin"/>
+							<DatePicker
+								id="DP2"
+								value="{
+									'path':'/valueDP2',
+									'type':'sap.ui.model.type.Date',
+									'formatOptions': {
+										'pattern': 'yyyy-MM-dd'
+									}
+								}"
+								change="handleChange"
+								class="sapUiSmallMarginBottom"/>
+						</OverflowToolbar>
+						 <t:Table
+							id="PurOrderTable"
+							rows="{/PurorderSet}" 
+							selectionMode="None"
+							selectionBehavior="RowSelector"
+							paste="onPaste"
+							ariaLabelledBy="title">
+							<t:extension>
+								<OverflowToolbar style="Clear">
+									<Title id="title" text="Purchase Order"/>
+								</OverflowToolbar>
+							</t:extension>
+							<t:columns>
+								<t:Column width="11rem">
+									<Label text="구매오더 번호" />
+									<t:template>
+										<Text text="{Pono}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem">
+									<Label text="자재코드" />
+									<t:template>
+										<Text text="{Matcode}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="11rem">
+									<Label text="구매요청 번호" />
+									<t:template>
+										<Text text="{Prno}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem">
+									<Label text="구매오더 상태" />
+									<t:template>
+										<Text text="{Postatus}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="9rem">
+									<Label text="구매오더 생성일자" />
+									<t:template>
+										<Text text="{Podate}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="9rem">
+									<Label text="검수번호" />
+									<t:template>
+										<Text text="{Insnum}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem">
+									<Label text="거래처코드" />
+									<t:template>
+										<Text text="{Vencode}" wrapping="false" class="vencodeColor"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="5rem">
+									<Label text="거래수량" />
+									<t:template>
+										<Text text="{
+											parts:[{path:'Quant'},{path:'Unit'}],
+											type: 'sap.ui.model.type.Unit', 
+											formatOptions: {showMeasure: false }
+											}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="5rem">
+									<Label text="단위" />
+									<t:template>
+										<Text text="{Unit}" wrapping="false" class="unitColor"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem">
+									<Label text="자재단가" />
+									<t:template>
+										<Text text="{
+											parts:[{path:'Price_Mat'},{path:'Currkey'}],
+											type: 'sap.ui.model.type.Currency', 
+											formatOptions: {showMeasure: false }
+											}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="8rem">
+									<Label text="총액" />
+									<t:template>
+										<Text text="{
+											parts:[{path:'Toprice'},{path:'Currkey'}],
+											type: 'sap.ui.model.type.Currency', 
+											formatOptions: {showMeasure: false }
+											}" wrapping="false" />
+									</t:template>
+								</t:Column>
+								<t:Column width="5rem">
+									<Label text="통화키" />
+									<t:template>
+										<Text text="{Currkey}" wrapping="false" class="currkeyColor" />
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+					</ScrollContainer>
+					<ScrollContainer
+						id="page2"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding">
+						<l:FixFlex id='chartFixFlex' minFlexSize="500">
+							<l:flexContent>
+								<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+									height='100%' width="100%" vizType='treemap' vizProperties="{ title: {text:'거래처 별 거래 금액 비교', visible: true}, dataLabel: { visible: true } }">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/PurorderSet}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Vencode"
+													value="{Vencode}" />
+												<viz.data:DimensionDefinition name="Matcode"
+													value="{Matcode}" />
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Quant"
+													value="{Quant}" />
+												<viz.data:MeasureDefinition name="Toprice"
+													value="{Toprice}" />
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="color" type="Measure"
+											values="Quant" />
+										<viz.feeds:FeedItem uid="weight" type="Measure"
+											values="Toprice" />                     
+										<viz.feeds:FeedItem uid="title" type="Dimension"
+											values="Vencode" />    
+										<viz.feeds:FeedItem uid="title" type="Dimension"
+											values="Matcode" />
+									</viz:feeds>
+									<viz:dependents>
+										<viz:Popover id="idPopOver"></viz:Popover>
+									</viz:dependents>
+								</viz:VizFrame>
+							</l:flexContent>
+						</l:FixFlex>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>
