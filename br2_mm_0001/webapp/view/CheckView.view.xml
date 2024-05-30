@@ -278,8 +278,7 @@
 								<Page
 									id="dynamicDetail"
 									title="거래처별 자재 상세 정보"
-									backgroundDesign= "Transparent"
-									class="whiteBackground"
+									backgroundDesign= "List"
 									showNavButton="true"
 									navButtonPress=".onPressDetailBack"
 									>
