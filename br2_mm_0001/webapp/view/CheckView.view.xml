@@ -246,13 +246,21 @@
 										<t:Column width="7rem">
 											<Label text="총 검수량" />
 											<t:template>
-												<Text text="{TotalInquan}" wrapping="false" />
+												<Text text="{
+														parts:[{path:'TotalInquan'},{path:'unit'}],
+														type: 'sap.ui.model.type.Unit', 
+														formatOptions: {showMeasure: false }
+														}" wrapping="false" />
 											</t:template>
 										</t:Column>
 										<t:Column width="7rem">
 											<Label text="총 불합격량" />
 											<t:template>
-												<Text text="{TotalFinquan}" wrapping="false" />
+												<Text text="{
+														parts:[{path:'TotalFinquan'},{path:'unit'}],
+														type: 'sap.ui.model.type.Unit', 
+														formatOptions: {showMeasure: false }
+														}" wrapping="false" />
 											</t:template>
 										</t:Column>
 										<t:Column width="7rem">
